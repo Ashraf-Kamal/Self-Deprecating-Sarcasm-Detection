@@ -18,18 +18,18 @@ from keras.layers import Layer
 import Attention_Class as Attention
 
 '''
-This program is implemented in Python 3.5 to implement the proposed model by applying deep learning techniques in Keras.It takes self-referential tweets as input
-and forwarded it to the embedding layer. The proposed model consists of the convolutional layer which extracts self-deprecating sarcasm-based syntactic and
-semantic features from the pre-trained GloVe embedding vectors, Bi-directional Gated Recurrent Unit (BiGRU) is used to capture both the preceding and succeeding
-self-deprecating sarcasm-based contextual sequences. However, this BiGRU is customized, and constituted using two custom GRUs, wherein one of the GRU moves
-in the succeeding directions (i.e., left to right of a self-referential tweet) to capture contextual information based succeeding sequences, and another GRU
-moves in the preceding directions (i.e., right to left of a self-referential tweet) to capture contextual information-based preceding sequences using the
-parameter 'go_backwards=True'.
+This python is implemented in Python 3.5 to implement the proposed model by applying deep learning techniques in Keras. It takes candidate self-referential tweet 
+as the input and forwarded it to the embedding layer. Further, convolutional layer in the proposed model is used to extracts self-deprecating sarcasm-based syntactic
+and semantic features from the pre-trained GloVe embedding vectors, and Bi-directional Gated Recurrent Unit (BiGRU) is considered to capture both the preceding and 
+succeeding self-deprecating sarcasm-based contextual sequences. However, BiGRU in the proposed model is constituted using two custom GRUs, wherein one of the GRU 
+moves in the succeeding directions (i.e., left to right of a self-referential tweet) to capture contextual information based succeeding sequences, and another GRU 
+moves in the preceding directions (i.e., right to left of a self-referential tweet) to capture contextual information-based preceding sequences using the parameter 
+'go_backwards=True'.
 
-In the proposed model, two attention layers are used, wherein using one attention layer, succeeding context is obtained from the succeeding contextual sequences
-extracted from the forward hidden layer of BiGRU, whereas using another attention layer, preceding context is obtained from the preceding contextual sequences
-extracted from the backward hidden layer of BiGRU for a candidate self-referential tweet. Thereafter, the outcome of both attention layers are concatenated
-together to obtain a comprehensive context representation. Finally, the sigmoid is applied to classify the processed that comprehensive contextual representation.
+In the proposed model, two attention layers are used, wherein using one attention layer, succeeding context is obtained from the succeeding contextual sequences 
+extracted from the forward hidden layer of BiGRU, whereas using another attention layer, preceding context is obtained from the preceding contextual sequences 
+extracted from the backward hidden layer of BiGRU for a candidate self-referential tweet. Thereafter, the outcome of both attention layers are concatenated together
+to obtain a comprehensive context representation. Finally, the sigmoid is applied to classify the processed that comprehensive contextual representation. 
 As a result, a self-referential tweet is classified as either self-deprecating sarcasm (SDS) or non-self-deprecating sarcasm (NSDS).
 
 '''
@@ -122,13 +122,13 @@ def main():
 
     input_1 = Input(shape=(20,), name='input')
     embedding=Embedding(max_words, 200, input_length=max_len, weights=[embedding_matrix], trainable=False)(input_1)
-    CNN=Conv1D(256, 3, activation='sigmoid')(embedding)
+    CNN=Conv1D(256, 3, activation='relu')(embedding)
     Max_Pool=MaxPooling1D(pool_size=2)(CNN)
 
     '''
-    Below, the first GRU moves in the succeeding directions (i.e., left to right direction of a self-referential tweet) to capture the contextual information based succeeding
-    sequences, and it is fed to the attention layer, wherein succeeding context for self-deprecating sarcasm words/tokens is obtained from the succeeding sequences extracted from the forward hidden layer
-    of the GRU.
+    Below, the first GRU moves in the succeeding directions (i.e., left to right direction of a self-referential tweet) to capture the contextual information based 
+    succeeding sequences, and it is fed to the attention layer, wherein succeeding context for self-deprecating sarcasm words/tokens is obtained from the succeeding 
+    sequences extracted from the forward hidden layer of the GRU.
     '''
 
     GRU1= GRU(256, return_sequences=True)(Max_Pool)
@@ -136,9 +136,9 @@ def main():
     atten_1= Attention.attention()(GRU1_Drop)
 
     '''
-    Below, the second GRU moves in the preceding directions (i.e., right to left direction of a self-referential tweet) using the parameter 'go_backwards=True' to capture
-    the contextual information based preceding sequences, and it is fed to the attention layer, wherein preceding context for self-deprecating sarcasm words/tokens is obtained from the preceding sequences
-    extracted from the backward hidden layer of the GRU.
+    Below, the second GRU moves in the preceding directions (i.e., right to left direction of a self-referential tweet) using the parameter 'go_backwards=True' to 
+    capture the contextual information based preceding sequences, and it is fed to the attention layer, wherein preceding context for self-deprecating sarcasm 
+    words/tokens is obtained from the preceding sequences extracted from the backward hidden layer of the GRU.
     '''
 
     GRU2= GRU(256, return_sequences=True, go_backwards=True)(Max_Pool)
