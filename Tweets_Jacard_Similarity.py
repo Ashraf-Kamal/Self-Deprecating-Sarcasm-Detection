@@ -14,7 +14,7 @@ from nltk.tokenize import word_tokenize
 '''
 This program is implemented in Python 2.7. It computes the Jaccard similarity between two explicit self-referential tweets 
 and saved values in a Jaccard matrix file. An adjacency matrix list is generated from the Jaccard matrix, if the Jaccard similarity 
-score is greater than 0.6. Thereafter, conncected components of explicit self-referential tweets are obtained.
+score is greater than 0.6. Thereafter, conncected components of explicit self-referential tweets are obtained in the form of clusters.
 '''
 
 stop_words = list(set(stopwords.words('english')))
