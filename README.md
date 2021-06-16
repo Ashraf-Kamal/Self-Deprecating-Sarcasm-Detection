@@ -45,7 +45,7 @@ This program is implemented in Python 2.7. In this program, spaCy, a popular ope
 --------------------------------------------------------------------------------------------------------------------------------------
 Tweet_Jacard_similarity.py
 --------------------------------------------------------------------------------------------------------------------------------------
-This program is implemented in Python 2.7. It computes the Jaccard similarity between two explicit self-referential tweets and saved values in a Jaccard matrix file. An adjacency matrix list is generated from the Jaccard matrix, if the Jaccard similarity score is greater than 0.6. Thereafter DFS Algorithm is applied over this list, and it is saved as an explicit self-referential tweets cluster file.
+This program is implemented in Python 2.7. It computes the Jaccard similarity between two explicit self-referential tweets and saved values in a Jaccard matrix file. An adjacency matrix list is generated from the Jaccard matrix, if the Jaccard similarity score is greater than 0.6. Thereafter, conncected components of explicit self-referential tweets are obtained.
 
 --------------------------------------------------------------------------------------------------------------------------------------
 Tweet_Final_Clustering.py  
