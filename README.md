@@ -77,7 +77,9 @@ This program is implemented in Python 3.5. This contains the class of attention 
 --------------------------------------------------------------------------------------------------------------------------------------
 Cite paper: 
 --------------------------------------------------------------------------------------------------------------------------------------
-Kamal, A., Abulaish, M. CAT-BiGRU: Convolution and Attention with Bi-Directional Gated Recurrent Unit for Self-Deprecating Sarcasm Detection. Cognitive Computation  Cognitive Computation. Jan (2021), pp.1-19. DOI: https://doi.org/10.1007/s12559-021-09821-0
+Kamal, A., Abulaish, M. CAT-BiGRU: Convolution and Attention with Bi-Directional Gated Recurrent Unit for Self-Deprecating Sarcasm Detection. Cognitive Computation  Cognitive Computation. Jan (2021), pp.1-19. 
+
+DOI: https://doi.org/10.1007/s12559-021-09821-0
 
 
 
